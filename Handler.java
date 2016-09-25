@@ -56,8 +56,8 @@ public class Handler {
         GameObject tempObject= object.get(l);
         return (int)tempObject.getY();
     }
-    public void colision(){
+    public void colision(Graphics g){
         GameObject tempObject= object.get(l);
-        tempObject.colision();
+        tempObject.colision(g);
     }
 }

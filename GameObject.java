@@ -68,5 +68,5 @@ public abstract class GameObject {
     {
     return velY;
     }
-    public abstract void colision();
+    public abstract void colision(Graphics g);
 }

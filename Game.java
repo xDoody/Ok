@@ -22,6 +22,7 @@ import java.util.Random;
 public class Game extends Canvas implements Runnable{
     Thread thread = new Thread();
     boolean running;
+    Graphics g;
     int dummyLevel=2;
     Random rand = new Random();
     Handler handler;
@@ -41,17 +42,21 @@ public class Game extends Canvas implements Runnable{
             new MouseAdapter(){
                 @Override
                 public void mouseClicked(MouseEvent me){
-                    if(
-                        (handler.getX() < me.getX() && (handler.getX()+32)>=me.getX())
-                        &&
-                        (handler.getY() < me.getY() && (handler.getY()+32)>=me.getY())
-                       ){
-                        handler.colision();
-                        }
+                    colision(me);
    
                 }
             }
         );  
+    }
+    public void colision(MouseEvent me){
+        if(
+           ((handler.getX()-10) < me.getX() && (handler.getX()+50)>=me.getX())
+            &&
+             ((handler.getY()-10) < me.getY() && (handler.getY()+50)>=me.getY())){
+                handler.colision(g);
+        }
+        
+        System.out.println("CLICKED");
     }
     //<editor-fold defaultstate="collapsed" desc="Start/Stop">
     public synchronized void  start(){
@@ -107,7 +112,7 @@ public class Game extends Canvas implements Runnable{
             return;
         }
         //initialize graphics
-        Graphics g = bs.getDrawGraphics();
+        g = bs.getDrawGraphics();
         //set the background color to black
         g.setColor(Color.black);
         //fill the background

@@ -54,7 +54,7 @@ public class OkObject extends GameObject{
     }
     @Override
     public void tick() {
-        x+=velX;
+        //x+=velX;
         y+=velY;
         if(y<=0 || y>= height-32)
         {
@@ -68,17 +68,29 @@ public class OkObject extends GameObject{
         }
         wigle();
     }
-
+    int clicked=0;
     @Override
-    public void colision(){
-        System.out.println(velX+":"+velY);
-        System.out.println("CLICKED!");
+    public void colision(Graphics g){
+        if(clicked==0)
+            clicked=1;
+        else
+            clicked=0;
+        level++;
     }
     
+    public void setColor(Graphics g)
+    {
+        if(clicked==0){
+            g.setColor(Color.cyan);
+        }
+        else{
+            g.setColor(Color.yellow);
+        }
+    }
     
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.cyan);
+        setColor(g);
         g.fill3DRect((int)x,(int) y, 32, 32, true);
     }
 
